@@ -13,10 +13,8 @@ bool Game::isRunning() {
     return this->running;
 }
 
-float projectilePosX = 0.0f;
-float projectilePosY = 0.0f;
-float projectileVelX = 20.0f;
-float projectileVelY = 30.0f;
+glm::vec2 projectilePos = glm::vec2(0.0f, 0.0f);
+glm::vec2 projectileVel = glm::vec2(20.0f, 30.0f);
 
 void Game::initialize(int width, int height) {
     if (SDL_Init(SDL_INIT_EVERYTHING) != 0) {
@@ -65,6 +63,9 @@ void Game::processInput() {
 }
 
 void Game::update() {
+
+    std::cout<<glm::to_string(projectilePos)<<std::endl;
+
     while (!SDL_TICKS_PASSED(SDL_GetTicks(), ticksLastFrame + FRAME_TARGET_TIME)) {
         SDL_Delay(1);
     }
@@ -73,8 +74,7 @@ void Game::update() {
 
     ticksLastFrame = SDL_GetTicks();
 
-    projectilePosX += projectileVelX * deltaTime;
-    projectilePosY += projectileVelY * deltaTime;
+    projectilePos += projectileVel * deltaTime;
 }
 
 void Game::render() {
@@ -82,8 +82,8 @@ void Game::render() {
     SDL_RenderClear(renderer);
 
     SDL_Rect projectile = {
-        (int) projectilePosX,
-        (int) projectilePosY,
+        (int) projectilePos.x,
+        (int) projectilePos.y,
         10,
         10
     };

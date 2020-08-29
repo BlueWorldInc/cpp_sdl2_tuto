@@ -2,6 +2,8 @@
 #define GAME_H
 
 #include <SDL2/SDL.h>
+#include <../lib/glm/glm.hpp>
+#include <../lib/glm/gtx/string_cast.hpp>
 // #include <SDL2/SDL_image.h>
 // #include <SDL2/SDL_ttf.h>
 
