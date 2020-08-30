@@ -2,6 +2,11 @@
     "files.associations": {
         "ostream": "cpp",
         "memory": "cpp",
-        "xmemory0": "cpp"
+        "xmemory0": "cpp",
+        "iostream": "cpp",
+        "vector": "cpp"
+    },
+    "files.exclude": {
+        "**/.vscode": true
     }
 }
