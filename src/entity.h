@@ -3,6 +3,8 @@
 
 #include <vector>
 #include <string>
+#include "./entityManager.h"
+#include "./component.h"
 
 class Component;
 class EntityManager;
@@ -20,6 +22,15 @@ class Entity {
         void render();
         void destroy();
         bool isActive() const; // on ajoute le const pour éviter que cette méthode/fonction modifie les membres de la classe. https://stackoverflow.com/questions/751681/meaning-of-const-last-in-a-function-declaration-of-a-class
+
+        template <typename T, typename... TArgs>
+        T& AddComponent(TArgs&&... args) {
+            T* newComponent(new T(std::forward<TArgs>(args)...));
+            newComponent->owner = this;
+            components.emplace_back(newComponent);
+            newComponent->initialize();
+            return *newComponent;
+        }
 };
 
 #endif
