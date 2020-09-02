@@ -42,6 +42,10 @@ class TransformComponent: public Component {
             SDL_RenderFillRect(Game::renderer, &transformRectangle);
         }
 
+        void getInfo() override {
+            std::cout << "      Component<" << componentName << ">" << std::endl;
+        }
+
 };
 
 #endif

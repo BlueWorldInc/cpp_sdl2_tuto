@@ -12,6 +12,7 @@ class EntityManager {
         void clearData();
         void update(float deltaTime);
         void render();
+        void getInfo();
         bool hasNoEntities();
         Entity& addEntity(std::string entityName);
         std::vector<Entity*> getEntities() const;

@@ -20,6 +20,14 @@ void Entity::render() {
     }
 }
 
+void Entity::getInfo() {
+    std::cout << "Entity Name: " << name << std::endl;
+    for (auto& component: components) {
+        component->getInfo();
+    }
+    std::cout << std::endl;
+}
+
 void Entity::destroy() {
     this->active = false;
 }

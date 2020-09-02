@@ -49,8 +49,14 @@ void Game::initialize(int width, int height) {
 }
 
 void Game::loadLevel(int leverNumber) {
-    Entity& newEntity(manager.addEntity("projectile"));
-    newEntity.AddComponent<TransformComponent>(0, 0, 20, 20, 32, 32, 1);
+    Entity& newEntityA(manager.addEntity("projectileA"));
+    Entity& newEntityB(manager.addEntity("projectileB"));
+    Entity& newEntityC(manager.addEntity("projectileC"));
+    Entity& newEntityD(manager.addEntity("projectileD"));
+    newEntityA.AddComponent<TransformComponent>(0, 0, 20, 20, 32, 32, 1);
+    newEntityB.AddComponent<TransformComponent>(0, 200, 60, 20, 32, 32, 1);
+    newEntityC.AddComponent<TransformComponent>(50, 0, 20, 60, 32, 32, 1);
+    newEntityD.AddComponent<TransformComponent>(300, 300, 20, -20, 32, 32, 1);
 }
 
 void Game::processInput() {
@@ -83,6 +89,8 @@ void Game::update() {
     ticksLastFrame = SDL_GetTicks();
 
     manager.update(deltaTime);
+
+    manager.getInfo();
 
 }
 

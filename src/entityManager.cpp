@@ -22,6 +22,12 @@ void EntityManager::render() {
     }
 }
 
+void EntityManager::getInfo() {
+    for (auto& entity: entities) {
+        entity->getInfo();
+    }
+}
+
 Entity& EntityManager::addEntity(std::string entityName) {
     Entity *entity = new Entity(*this, entityName);
     entities.emplace_back(entity);

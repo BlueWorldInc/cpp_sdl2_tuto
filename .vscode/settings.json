@@ -7,6 +7,6 @@
         "vector": "cpp"
     },
     "files.exclude": {
-        "**/.vscode": true
+        "**/.vscodea": true
     }
 }
