@@ -31,20 +31,20 @@ class TransformComponent: public Component {
             position.y += velocity.y * deltaTime;
         }
 
-        void render() override {
-            SDL_Rect transformRectangle = {
-                (int) position.x,
-                (int) position.y,
-                width,
-                height
-            };
-            SDL_SetRenderDrawColor(Game::renderer, 255, 255, 255, 255);
-            SDL_RenderFillRect(Game::renderer, &transformRectangle);
-        }
+        // void render() override {
+        //     // SDL_Rect transformRectangle = {
+        //     //     (int) position.x,
+        //     //     (int) position.y,
+        //     //     width,
+        //     //     height
+        //     // };
+        //     // SDL_SetRenderDrawColor(Game::renderer, 255, 255, 255, 255);
+        //     // SDL_RenderFillRect(Game::renderer, &transformRectangle);
+        // }
 
-        void getInfo() override {
-            std::cout << "      Component<" << componentName << ">" << std::endl;
-        }
+        // void getInfo() override {
+        //     std::cout << "      Component<" << componentName << ">" << std::endl;
+        // }
 
 };
 

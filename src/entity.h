@@ -3,19 +3,21 @@
 
 #include <iostream>
 #include <vector>
+#include <map>
 #include <string>
 #include "./entityManager.h"
 #include "./component.h"
 #include <cxxabi.h>
 
-class Component;
 class EntityManager;
+class Component;
 
 class Entity {
     private:
         EntityManager& manager; // une adresse d'un entityMananger
         bool active;
         std::vector<Component*> components;
+        std::map<const std::type_info*, Component*> componentTypeMap;
     public:
         std::string name;
         Entity(EntityManager& manager);
@@ -30,11 +32,26 @@ class Entity {
         T& AddComponent(TArgs&&... args) {
             T* newComponent(new T(std::forward<TArgs>(args)...));
             newComponent->owner = this;
-            // newComponent->componentName = typeid(T).name(); // old way
-            newComponent->componentName = abi::__cxa_demangle(typeid(T).name(), 0, 0, 0); // demangling way see this: https://stackoverflow.com/a/23319351
             components.emplace_back(newComponent);
+            componentTypeMap[&typeid(*newComponent)] = newComponent;
             newComponent->initialize();
             return *newComponent;
+        }
+
+        template <typename T>
+        T* GetComponent() {
+            return static_cast<T*>(componentTypeMap[&typeid(T)]);
+        }
+
+        template <typename T>
+        bool hasComponent() {
+            return (bool) (componentTypeMap.find(&typeid(T)) != componentTypeMap.end());
+            //  if (componentTypeMap.find(&typeid(T)) == componentTypeMap.end()) {
+            // if (componentTypeMap.count(&typeid(T)) == 0) {
+                //  return false;
+            //  } else {
+                //  return true;
+            //  }
         }
 };
 

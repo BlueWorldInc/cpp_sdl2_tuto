@@ -3,7 +3,7 @@ build:
 	-L lib \
 	-I include \
 	./src/*.cpp \
-	-o game.exe \
+	-o ./lib/bin/game.exe \
 	-llua53 \
 	-lmingw32 \
 	-lSDL2main \
@@ -17,4 +17,4 @@ clean:
 	@del game.exe
 
 run:
-	@powershell write-host -fore Green Game is running && game.exe
+	@powershell write-host -fore Green Game is running && "./lib/bin/game.exe"
